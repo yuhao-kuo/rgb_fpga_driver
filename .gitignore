@@ -1,0 +1,12 @@
+*.rc
+backup/
+*.bak/
+*.bak
+vfastLog/
+*.vcd
+*.vcd.fsdb
+*.log
+*.history
+INCA_libs/
+*.conf
+nWaveLog/
