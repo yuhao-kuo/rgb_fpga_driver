@@ -7,7 +7,7 @@ module rgb_data(
 	output outstat
 );
 
-	reg [3:0]_bitcnt;
+	reg [3:0]_bitcnt = 0;
 
 	always@ (reset)
 	begin

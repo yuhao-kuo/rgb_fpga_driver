@@ -13,6 +13,7 @@ module test_rgb_driver();
 	
 	wire no_pulse;
 	wire out;
+	wire complete_event;
 
 	reg clk = 0;
 	reg [2:0]count = 3'h0;
@@ -23,25 +24,26 @@ module test_rgb_driver();
 		$dumpfile("/home/yuhao/verilog/driver.vcd");
 		$dumpvars;
 		# (2 * `CYCLE) reset <= 1;
-		#10000 $finish;
+		#100000 $finish;
 	end
 	
 	always #(2 * `CYCLE) clk = ~clk;
 
-	always @(negedge clk) begin
-		if (count == 1) begin
+	always @(posedge complete_event) begin
+		data <= data + 1;
+		/*if (count == 1) begin
 			data_next <= 1;
 		end else begin
 			data_next <= 0;
 		end
-		count <= count + 1;
+		count <= count + 1;*/
 	end
 
-	always @(posedge data_next) begin
+	/*always @(data_next) begin
 		data <= data + 1;
-	end
+	end*/
 
-	rgb_driver driver(reset, enable, clk, clk_div, clk_max, data, hi_in_1, hi_in_0, no_pulse, out);
+	rgb_driver driver(reset, clk, enable, clk_div, clk_max, data, hi_in_1, hi_in_0, no_pulse, out, complete_event);
 
 endmodule
 

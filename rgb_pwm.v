@@ -16,9 +16,9 @@ module rgb_pwm(
 	 *
 	 */
 	
-	reg [15:0]_hivalue;
-	reg [15:0]_hicount;
-	reg [15:0]_count;
+	reg [15:0]_hivalue = 16'h0;
+	reg [15:0]_hicount = 16'h0;
+	reg [15:0]_count = 16'h0;
 	reg _outpulse = 0;
 
 	/* clock */

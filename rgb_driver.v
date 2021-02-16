@@ -11,20 +11,20 @@ module rgb_driver(
 	input  [15:0]hi_in_1,
 	input  [15:0]hi_in_0,
 	output nopulse,
-	output outpin
+	output outpin,
+	output transmit_complete
 );
 
 	wire [15:0]pwm_hi_range;
 	wire data_bit_out;
-	wire data_transmit_complete_event;
 	
-	reg  [7:0]count;
+	reg  [7:0]count = 8'h0;
 	
 	rgb_data rgb_data(
 		.reset(reset),
 		.nextflag(outpin),
 		.data(data),
-		.endevent(data_transmit_complete_event),
+		.endevent(transmit_complete),
 		.outstat(data_bit_out)
 	);
 
